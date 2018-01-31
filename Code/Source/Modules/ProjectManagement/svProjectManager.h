@@ -40,7 +40,7 @@
 #include <mitkDataStorage.h>
 
 #include <QString>
-
+#include <mitkNodePredicateDataType.h>
 class SVPROJECTMANAGEMENT_EXPORT svProjectManager
 {
 
@@ -57,7 +57,7 @@ public:
     static void LoadData(mitk::DataNode::Pointer dataNode);
     static mitk::DataNode::Pointer GetProjectFolderNode(mitk::DataStorage::Pointer dataStorage, mitk::DataNode::Pointer dataNode);
 
-    template <typename TDataFolder> static mitk::DataNode::Pointer CreateDataFolder(mitk::DataStorage::Pointer dataStorage, QString folderName, mitk::DataNode::Pointer projFolderNode=NULL);
+    //template <typename TDataFolder> static mitk::DataNode::Pointer CreateDataFolder(mitk::DataStorage::Pointer dataStorage, QString folderName, mitk::DataNode::Pointer projFolderNode=NULL);
 
     static void AddDataNode(mitk::DataStorage::Pointer dataStorage, mitk::DataNode::Pointer dataNode, mitk::DataNode::Pointer parentNode);
 
@@ -68,6 +68,54 @@ public:
     static void DuplicateProject(mitk::DataStorage::Pointer dataStorage, mitk::DataNode::Pointer projFolderNode, QString newName);
 
     static bool DuplicateDirRecursively(const QString &srcFilePath, const QString &tgtFilePath);
+
+    template <typename TDataFolder>
+    static mitk::DataNode::Pointer CreateDataFolder(mitk::DataStorage::Pointer dataStorage, QString folderName, mitk::DataNode::Pointer projFolderNode=NULL)
+    {
+        mitk::NodePredicateDataType::Pointer isDataFolder = mitk::NodePredicateDataType::New(TDataFolder::GetStaticNameOfClass());
+
+        mitk::DataStorage::SetOfObjects::ConstPointer rs;
+        if(projFolderNode.IsNull())
+        {
+            rs=dataStorage->GetSubset(isDataFolder);
+        }else
+        {
+            rs=dataStorage->GetDerivations (projFolderNode,isDataFolder);
+        }
+
+        bool exists=false;
+        mitk::DataNode::Pointer dataFolderNode=NULL;
+        std::string fdName=folderName.toStdString();
+
+        for(int i=0;i<rs->size();i++)
+        {
+            if(rs->GetElement(i)->GetName()==fdName)
+            {
+                exists=true;
+                dataFolderNode=rs->GetElement(i);
+                break;
+            }
+        }
+
+        if(!exists)
+        {
+            dataFolderNode=mitk::DataNode::New();
+            dataFolderNode->SetName(fdName);
+            dataFolderNode->SetVisibility(true);
+            typename TDataFolder::Pointer dataFolder=TDataFolder::New();
+            dataFolderNode->SetData(dataFolder);
+            if(projFolderNode.IsNull())
+            {
+                dataStorage->Add(dataFolderNode);
+            }else
+            {
+                dataStorage->Add(dataFolderNode,projFolderNode);
+            }
+
+        }
+
+        return dataFolderNode;
+    }
 
 };
 
