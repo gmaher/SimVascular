@@ -52,9 +52,9 @@ class  SV4GUIMODULEMACHINELEARNING_EXPORT sv4guiMachineLearningUtils
 
 public:
 
-    static svMLUtils* getInstance(std::string network_type);
+    static sv4guiMachineLearningUtils* getInstance(std::string network_type);
 
-    virtual ~svMLUtils();
+    virtual ~sv4guiMachineLearningUtils();
 
     std::string setImage(std::string image_path);
 
@@ -63,9 +63,9 @@ public:
     void sampleNetwork();
 
 private:
-  svMLUtils(std::string network_type);
+  sv4guiMachineLearningUtils(std::string network_type);
 
-  static svMLUtils* instance;
+  static sv4guiMachineLearningUtils* instance;
 
 protected:
 

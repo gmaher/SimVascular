@@ -3,18 +3,17 @@ set(SRC_CPP_FILES
 )
 
 set(INTERNAL_CPP_FILES
-    sv4guiMachineLearning.cxx
-    sv4guiMachineLearningPluginActivator.cxx
+    sv4gui_MachineLearning.cxx
+    sv4gui_MachineLearningPluginActivator.cxx
 )
 
 set(MOC_H_FILES
-    src/internal/sv4guiMachineLearning.h
-    src/internal/sv4guiMachineLearningPluginActivator.h
-    src/internal/json.hpp
+    src/internal/sv4gui_MachineLearning.h
+    src/internal/sv4gui_MachineLearningPluginActivator.h
 )
 
 set(UI_FILES
-    src/internal/sv4guiMachineLearning.ui
+    src/internal/sv4gui_MachineLearning.ui
 )
 
 set(CACHED_RESOURCE_FILES

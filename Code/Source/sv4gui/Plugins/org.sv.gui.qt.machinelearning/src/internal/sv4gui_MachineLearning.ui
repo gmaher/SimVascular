@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sv4gui_MachineLearning</class>
- <widget class="QWidget" name="sv4gui_MachineLearning">
+ <class>sv4guiMachineLearning</class>
+ <widget class="QWidget" name="sv4guiMachineLearning">
   <property name="geometry">
    <rect>
     <x>0</x>

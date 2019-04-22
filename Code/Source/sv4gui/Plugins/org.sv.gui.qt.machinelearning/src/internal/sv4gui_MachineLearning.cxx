@@ -1,6 +1,6 @@
 #include "sv4gui_MachineLearningUtils.h"
 #include "sv4gui_MachineLearning.h"
-#include "ui_sv4guiMachineLearning.h"
+#include "ui_sv4gui_MachineLearning.h"
 
 #include "sv4gui_Path.h"
 #include "sv4gui_ContourGroup.h"

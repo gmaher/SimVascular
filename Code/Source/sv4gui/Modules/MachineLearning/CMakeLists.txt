@@ -1,4 +1,7 @@
-set(lib ${SV_LIB_MODULE_MACHINELEARNING_NAME})
+#set(lib ${SV_LIB_MODULE_MACHINELEARNING_NAME})
+
+#set(lib ${SV_LIB_MODULE_IMAGEPROCESSING_NAME})
+set(lib "_simvascular_module_machinelearning")
 
 #-----------------------------------------------------------------------------
 # Create module

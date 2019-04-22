@@ -1,5 +1,5 @@
-#include "svMLPluginActivator.h"
-#include "svML.h"
+#include "sv4gui_MachineLearningPluginActivator.h"
+#include "sv4gui_MachineLearning.h"
 
 void svMLPluginActivator::start(ctkPluginContext* context)
 {
