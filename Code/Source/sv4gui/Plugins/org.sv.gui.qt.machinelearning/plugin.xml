@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+  <extension point="org.blueberry.ui.views">
+    <view id="org.sv.views.ml"
+          name="Machine Learning"
+          class="svML"
+          icon="resources/hello.png" />
+  </extension>
+
+  <extension point="org.mitk.gui.qt.datamanager.contextMenuActions">
+      <contextMenuAction nodeDescriptorName="svML" label="Machine Learning
+         Context Menu" icon="" class="svML"/>
+  </extension>
+
+</plugin>

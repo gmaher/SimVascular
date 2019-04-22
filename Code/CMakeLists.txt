@@ -257,6 +257,7 @@ if(SV_USE_QT_GUI)
     "Source/sv4gui/Modules/ProjectManagement"
     "Source/sv4gui/Modules/QtWidgets"
     "Source/sv4gui/Modules/ImageProcessing"
+		"Source/sv4gui/Modules/MachineLearning"
     "Source/sv4gui/Modules/svFSI"
      )
 
@@ -285,6 +286,7 @@ if(SV_USE_QT_GUI)
       "Source/sv4gui/Plugins/org.sv.gui.qt.datamanager"
       "Source/sv4gui/Plugins/org.sv.gui.qt.projectmanager"
       "Source/sv4gui/Plugins/org.sv.gui.qt.pathplanning"
+			"Source/sv4gui/Plugins/org.sv.gui.qt.machinelearning"
       "Source/sv4gui/Plugins/org.sv.gui.qt.segmentation"
       "Source/sv4gui/Plugins/org.sv.gui.qt.modeling"
       "Source/sv4gui/Plugins/org.sv.gui.qt.meshing"
