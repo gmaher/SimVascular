@@ -29,8 +29,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef SVMLUTILS_H
-#define SVMLUTILS_H
+#ifndef SV4GUIMACHINELEARNINGUTILS_H
+#define SV4GUIMACHINELEARNINGUTILS_H
+
+#include "sv4guiModuleMachineLearningExports.h"
 
 //needed because clash between QT slots keyword and python stuff
 //see https://stackoverflow.com/questions/23068700/embedding-python3-in-qt-5
@@ -45,7 +47,7 @@
 #include "sv4gui_Path.h"
 #include "sv4gui_ContourGroup.h"
 
-class  svMLUtils
+class  SV4GUIMODULEMACHINELEARNING_EXPORT sv4guiMachineLearningUtils
 {
 
 public:
@@ -72,4 +74,4 @@ protected:
   PyObject* py_wrapper_inst;
 };
 
-#endif /* SVMLUTILS_H */
+#endif /* SV4GUIMACHINELEARNINGUTILS_H */

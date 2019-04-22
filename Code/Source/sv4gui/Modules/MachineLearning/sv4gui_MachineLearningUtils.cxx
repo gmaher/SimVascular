@@ -1,4 +1,4 @@
-#include "svMLUtils.h"
+#include "sv4gui_MachineLearningUtils.h"
 #include <json.hpp>
 #include <iostream>
 
@@ -7,16 +7,16 @@ using json = nlohmann::json;
 //see https://stackoverflow.com/questions/16777126/pyobject-callmethod-with-keyword-arguments
 //for some examples of calling python code from C++
 
-svMLUtils* svMLUtils::instance = 0;
+sv4guiMachineLearningUtils* sv4guiMachineLearningUtils::instance = 0;
 
-svMLUtils* svMLUtils::getInstance(std::string network_type){
+sv4guiMachineLearningUtils* sv4guiMachineLearningUtils::getInstance(std::string network_type){
   if (instance == 0){
-    instance = new svMLUtils(network_type);
+    instance = new sv4guiMachineLearningUtils(network_type);
   }
   return instance;
 }
 
-svMLUtils::svMLUtils(std::string network_type){
+sv4guiMachineLearningUtils::sv4guiMachineLearningUtils(std::string network_type){
 
   Py_Initialize();
   PyRun_SimpleString("import sys");
@@ -50,15 +50,15 @@ svMLUtils::svMLUtils(std::string network_type){
 
 }
 
-svMLUtils::~svMLUtils(){
-  std::cout << "svMLUtils destructor\n";
+sv4guiMachineLearningUtils::~sv4guiMachineLearningUtils(){
+  std::cout << "sv4guiMachineLearningUtils destructor\n";
   Py_DECREF(py_wrapper_mod);
   Py_DECREF(py_wrapper_class);
   Py_DECREF(py_wrapper_inst);
   Py_Finalize();
 }
 
-std::string svMLUtils::setImage(std::string image_path){
+std::string sv4guiMachineLearningUtils::setImage(std::string image_path){
   PyObject* py_res = PyObject_CallMethod(py_wrapper_inst, "set_image",
                         "s", image_path.c_str());
 
@@ -72,7 +72,7 @@ std::string svMLUtils::setImage(std::string image_path){
   return std::string(cstr);
 }
 
-std::vector<std::vector<double>> svMLUtils::segmentPathPoint(sv4guiPathElement::sv4guiPathPoint path_point){
+std::vector<std::vector<double>> sv4guiMachineLearningUtils::segmentPathPoint(sv4guiPathElement::sv4guiPathPoint path_point){
 
   std::vector<std::vector<double>> empty_points;
 
@@ -117,7 +117,7 @@ std::vector<std::vector<double>> svMLUtils::segmentPathPoint(sv4guiPathElement::
   return points;
 }
 
-void svMLUtils::sampleNetwork(){
+void sv4guiMachineLearningUtils::sampleNetwork(){
   PyObject* py_res = PyObject_CallMethod(py_wrapper_inst, "sample", "");
 
   if (py_res == NULL){
