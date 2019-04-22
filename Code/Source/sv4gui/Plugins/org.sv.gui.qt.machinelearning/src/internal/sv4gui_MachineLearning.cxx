@@ -1,6 +1,6 @@
-#include "svMLUtils.h"
-#include "svML.h"
-#include "ui_svML.h"
+#include "sv4gui_MachineLearningUtils.h"
+#include "sv4gui_MachineLearning.h"
+#include "ui_sv4guiMachineLearning.h"
 
 #include "sv4gui_Path.h"
 #include "sv4gui_ContourGroup.h"
@@ -26,19 +26,19 @@
 #include <QListWidgetItem>
 
 
-const QString svML::EXTENSION_ID = "org.sv.views.ml";
+const QString sv4guiMachineLearning::EXTENSION_ID = "org.sv.views.machinelearning";
 
-svML::svML() :
-  ui(new Ui::svML)
+sv4guiMachineLearning::sv4guiMachineLearning() :
+  ui(new Ui::sv4guiMachineLearning)
 {
 
 }
 
-svML::~svML(){
+sv4guiMachineLearning::~sv4guiMachineLearning(){
   delete ui;
 }
 
-void svML::initialize(){
+void sv4guiMachineLearning::initialize(){
   std::cout << "initializing\n";
   mitk::NodePredicateDataType::Pointer isProjFolder = mitk::NodePredicateDataType::New("sv4guiProjectFolder");
   mitk::DataNode::Pointer projFolderNode = GetDataStorage()->GetNode (isProjFolder);
@@ -104,12 +104,12 @@ void svML::initialize(){
 
     std::cout << "Image filePath: " << m_imageFilePath << "\n";
 
-    ml_utils = svMLUtils::getInstance("googlenet_c30_train300k_aug10_clean");
+    ml_utils = sv4guiMachineLearningUtils::getInstance("googlenet_c30_train300k_aug10_clean");
     ml_utils->setImage(m_imageFilePath);
   }//end if projectfoldernode
 }
 
-void svML::CreateQtPartControl(QWidget *parent){
+void sv4guiMachineLearning::CreateQtPartControl(QWidget *parent){
   initialize();
   m_Parent=parent;
   ui->setupUi(parent);
@@ -138,7 +138,7 @@ void svML::CreateQtPartControl(QWidget *parent){
   updatePaths();
 }
 
-void svML::selectAllPaths(){
+void sv4guiMachineLearning::selectAllPaths(){
   bool checked = (ui->selectAllPathsCheckBox->checkState() == Qt::Checked);
 
   for (int i = 0; i < ui->pathList->count(); i++){
@@ -150,7 +150,7 @@ void svML::selectAllPaths(){
   }
 }
 
-void svML::updatePaths(){
+void sv4guiMachineLearning::updatePaths(){
   auto path_folder_node = GetDataStorage()->GetNamedNode("Paths");
   auto rs       = GetDataStorage()->GetDerivations(path_folder_node);
 
@@ -175,12 +175,12 @@ void svML::updatePaths(){
   }
 }
 
-void svML::setImage(){
+void sv4guiMachineLearning::setImage(){
   std::string status = ml_utils->setImage(m_imageFilePath);
   std::cout << "set image status " << status << "\n";
 }
 
-void svML::segmentPaths(){
+void sv4guiMachineLearning::segmentPaths(){
   //paths
   auto path_folder_node = GetDataStorage()->GetNamedNode("Paths");
   auto paths_list       = GetDataStorage()->GetDerivations(path_folder_node);
@@ -216,7 +216,7 @@ void svML::segmentPaths(){
   }
 }
 
-void svML::createContourGroup(std::string path_name){
+void sv4guiMachineLearning::createContourGroup(std::string path_name){
   auto seg_folder_node = GetDataStorage()->GetNamedNode("Segmentations");
 
   m_current_group = sv4guiContourGroup::New();
@@ -234,7 +234,7 @@ void svML::createContourGroup(std::string path_name){
   GetDataStorage()->Add(seg_node, seg_folder_node);
 }
 
-void svML::segmentPath(){
+void sv4guiMachineLearning::segmentPath(){
   auto path = dynamic_cast<sv4guiPath*>(m_current_path_node->GetData());
 
   auto path_element = path->GetPathElement(0);
@@ -268,7 +268,7 @@ void svML::segmentPath(){
 11. insert into contour group
 */
 
-void svML::doSegmentation(sv4guiPathElement::sv4guiPathPoint path_point,
+void sv4guiMachineLearning::doSegmentation(sv4guiPathElement::sv4guiPathPoint path_point,
 int index, int n_){
 
 
@@ -308,6 +308,6 @@ int index, int n_){
   mitk::RenderingManager::GetInstance()->RequestUpdateAll();
 }
 
-void svML::sampleNetwork(){
+void sv4guiMachineLearning::sampleNetwork(){
   ml_utils->sampleNetwork();
 }

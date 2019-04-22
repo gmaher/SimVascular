@@ -1,38 +1,28 @@
-#ifndef svML_H
-#define svML_H
+#ifndef sv4guiMachineLearning_H
+#define sv4guiMachineLearning_H
 
-#include <QmitkFunctionality.h>
+#include <sv4gui_QmitkFunctionality.h>
 #include <QString>
 #include <string>
-#include "svMLUtils.h"
+#include "sv4gui_MachineLearningUtils.h"
 #include "sv4gui_DataNodeOperationInterface.h"
 #include "sv4gui_DataNodeOperation.h"
 #include "sv4gui_ContourGroup.h"
 #include "sv4gui_PathElement.h"
 
-//socket includes
-#include <stdio.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
-
-#include <json.hpp>
-using json = nlohmann::json;
-
 namespace Ui {
-class svML;
+class sv4guiMachineLearning;
 }
 
-class svML : public QmitkFunctionality
+class sv4guiMachineLearning : public sv4guiQmitkFunctionality
 {
     Q_OBJECT
 
 public:
 
-    svML();
+    sv4guiMachineLearning();
 
-    virtual ~svML();
+    virtual ~sv4guiMachineLearning();
 
     virtual void CreateQtPartControl(QWidget *parent) override;
 
@@ -62,9 +52,9 @@ public:
 
 protected:
 
-  svMLUtils* ml_utils;
+  sv4guiMachineLearningUtils* ml_utils;
 
-  Ui::svML *ui;
+  Ui::sv4guiMachineLearning *ui;
 
   QWidget *m_parent;
 
@@ -86,4 +76,4 @@ protected:
 
 };
 
-#endif // SVML_H
+#endif // SV4GUIMACHINELEARNING_H

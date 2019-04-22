@@ -2,15 +2,15 @@
 <plugin>
 
   <extension point="org.blueberry.ui.views">
-    <view id="org.sv.views.ml"
+    <view id="org.sv.views.machinelearning"
           name="Machine Learning"
-          class="svML"
+          class="sv4guiMachineLearning"
           icon="resources/hello.png" />
   </extension>
 
   <extension point="org.mitk.gui.qt.datamanager.contextMenuActions">
-      <contextMenuAction nodeDescriptorName="svML" label="Machine Learning
-         Context Menu" icon="" class="svML"/>
+      <contextMenuAction nodeDescriptorName="sv4guiMachineLearning" label="Machine Learning
+         Context Menu" icon="" class="sv4guiMachineLearning"/>
   </extension>
 
 </plugin>
