@@ -187,7 +187,7 @@ public slots:
     // ml stuff
     void selectAllPaths();
     void segmentPaths();
-    //void sampleNetwork();
+    void sampleNetwork();
     void segTabSelected();
     void CreateMLContour();
 

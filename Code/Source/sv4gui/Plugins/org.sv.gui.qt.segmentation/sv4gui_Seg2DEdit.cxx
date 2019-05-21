@@ -1866,7 +1866,7 @@ void sv4guiSeg2DEdit::setupMLui(){
 
   connect(ui->selectAllPathsCheckBox, SIGNAL(clicked()), this, SLOT(selectAllPaths()));
 
-  // connect(ui->sampleNetButton, SIGNAL(clicked()), this, SLOT(sampleNetwork()));
+  connect(ui->sampleNetButton, SIGNAL(clicked()), this, SLOT(sampleNetwork()));
 
   connect(ui->segToolbox, SIGNAL(currentChanged(int)),
     this, SLOT(segTabSelected()));
@@ -2130,6 +2130,7 @@ sv4guiContour* sv4guiSeg2DEdit::doMLContour(sv4guiPathElement::sv4guiPathPoint p
   return contour;
 }
 
-// void sv4guiSeg2DEdit::sampleNetwork(){
-//   ml_utils->sampleNetwork();
-// }
+void sv4guiSeg2DEdit::sampleNetwork(){
+  ml_utils->sampleNetwork();
+  std::cout << "Sampled network\n";
+}

@@ -875,6 +875,13 @@ Then, press key Delete to remove the shown contour.</string>
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="sampleNetButton">
+            <property name="text">
+             <string>Sample Network</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
